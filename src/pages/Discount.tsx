@@ -6,34 +6,40 @@ const Discount = () => {
   const [desiredPrice, setDesiredPrice] = useState<string>("");
 
   const discount = useMemo(() => {
-    const total = parseFloat(totalPrice);
-    const desired = parseFloat(desiredPrice);
+    const total = parseFloat(totalPrice.replace(/\s/g, "")); 
+    const desired = parseFloat(desiredPrice.replace(/\s/g, "")); 
 
-    if (isNaN(desired) || desired <= 0 || isNaN(total) || total <= 0)
+    if (isNaN(desired) || desired <= 0 || isNaN(total) || total <= 0) {
       return "unknown";
-    if (desired > total) return "desired price bigger than total";
+    }
+    if (desired > total) {
+      return "Desired price is greater than total";
+    }
 
-    const desiredPercentage = desired / total;
-    const result = (1 - desiredPercentage) * 100;
+    const result = ((total - desired) / total) * 100;
     return `${result.toFixed(2)}%`;
   }, [desiredPrice, totalPrice]);
 
+  const formatNumber = (value: string) => {
+    return value.replace(/\s/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " "); 
+  };
+
   const handleTotalPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTotalPrice(e.target.value);
+    setTotalPrice(formatNumber(e.target.value)); 
   };
 
   const handleDesiredPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDesiredPrice(e.target.value);
+    setDesiredPrice(formatNumber(e.target.value)); 
   };
 
   return (
-    <Flex sx={{ m: "20px", p: "16px", flexDirection: "column", gap: "4px" }}>
+    <Flex sx={{ m: "20px", p: "16px", flexDirection: "column", gap: "8px" }}>
       <h2>Know the discount</h2>
       <Flex sx={{ gap: 2 }}>
         <Text>Enter the cost of the course:</Text>
         <input
           min={0}
-          type="number"
+          type="text" 
           value={totalPrice}
           onChange={handleTotalPriceChange}
           placeholder="0"
@@ -43,7 +49,7 @@ const Discount = () => {
         <Text>Enter the desired price:</Text>
         <input
           min={0}
-          type="number"
+          type="text" 
           value={desiredPrice}
           onChange={handleDesiredPriceChange}
           placeholder="0"
