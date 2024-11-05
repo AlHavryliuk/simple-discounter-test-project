@@ -44,14 +44,15 @@ const Discount = () => {
   return (
     <Flex
       sx={{
-        my: "20px",
+        my: [0, null, "20px"],
         mx: "auto",
         p: "16px",
         flexDirection: "column",
         gap: "8px",
-        width: "600px",
+        width: ["100%", null, "600px"],
         borderRadius: "8px",
         bg: "#eaeaea",
+        height: ["100vh", null, "auto"],
       }}
     >
       <h2>Калькулятор знижок:</h2>
