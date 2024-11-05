@@ -44,11 +44,12 @@ const Discount = () => {
   return (
     <Flex
       sx={{
-        m: "20px",
+        my: "20px",
+        mx: "auto",
         p: "16px",
         flexDirection: "column",
         gap: "8px",
-        width: "max-content",
+        width: "600px",
         borderRadius: "8px",
         bg: "#eaeaea",
       }}
