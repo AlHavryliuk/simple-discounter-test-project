@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Flex, Text } from "theme-ui";
+import CalculatorInput from "../CalculatorInput/CalculatorInput";
 
-const Discount = () => {
+const DiscountCalculator = () => {
   const [totalPrice, setTotalPrice] = useState<string>("");
   const [desiredPrice, setDesiredPrice] = useState<string>("");
 
@@ -44,8 +45,6 @@ const Discount = () => {
   return (
     <Flex
       sx={{
-        my: [0, null, "20px"],
-        mx: "auto",
         p: "16px",
         flexDirection: "column",
         gap: "8px",
@@ -55,28 +54,23 @@ const Discount = () => {
         height: ["100vh", null, "auto"],
       }}
     >
-      <h2>Калькулятор знижок:</h2>
-      <Flex sx={{ gap: 2 }}>
-        <Text>Початкова ціна курса:</Text>
-        <input
-          min={0}
-          type="text"
+      <Flex sx={{ flexDirection: "column", gap: "8px" }}>
+        <h2>Калькулятор знижок</h2>
+
+        <CalculatorInput
+          title="Початкова ціна курса:"
           value={totalPrice}
-          onChange={handleTotalPriceChange}
-          placeholder="0"
+          setValue={handleTotalPriceChange}
         />
-      </Flex>
-      <Flex sx={{ gap: 2 }}>
-        <Text>Бажана ціна курса:</Text>
-        <input
-          min={0}
-          type="text"
+        <CalculatorInput
+          title="Бажана ціна курса:"
           value={desiredPrice}
-          onChange={handleDesiredPriceChange}
-          placeholder="0"
+          setValue={handleDesiredPriceChange}
         />
       </Flex>
+
       <h2>Результати:</h2>
+
       <Flex sx={{ flexDirection: "column" }}>
         <Text>
           Знижка (з округленням):{" "}
@@ -103,4 +97,4 @@ const Discount = () => {
   );
 };
 
-export default Discount;
+export default DiscountCalculator;

@@ -2,11 +2,11 @@
 
 import { ThemeUIProvider } from "theme-ui";
 import { theme } from "./helpers/theme";
-import Discount from "./pages/Discount";
+import Calculator from "./pages/Calculator";
 
 export const App = () => (
   <ThemeUIProvider theme={theme}>
-    <Discount />
+    <Calculator />
   </ThemeUIProvider>
 );
 
