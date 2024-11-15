@@ -17,6 +17,7 @@ const ClassicCalculator = () => {
 
   return (
     <Box
+      className="calculator"
       sx={{
         background: "white",
         borderRadius: "8px",

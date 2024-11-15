@@ -32,6 +32,7 @@ const DiscountCalculator = () => {
 
   return (
     <Flex
+      className="calculator"
       sx={{
         flexDirection: "column",
         gap: "24px",
