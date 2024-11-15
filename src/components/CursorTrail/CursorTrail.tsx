@@ -22,14 +22,10 @@ const CursorWithDollar = () => {
   }, []);
 
   useEffect(() => {
-    const trailInterval = setInterval(() => {
-      setTrailPosition((prev) => ({
-        x: prev.x + (cursorPosition.x - prev.x) * 0.2,
-        y: prev.y + (cursorPosition.y - prev.y) * 0.2,
-      }));
-    }, 16);
-
-    return () => clearInterval(trailInterval);
+    setTrailPosition((prev) => ({
+      x: prev.x + (cursorPosition.x - prev.x) * 0.2,
+      y: prev.y + (cursorPosition.y - prev.y) * 0.2,
+    }));
   }, [cursorPosition]);
 
   return (
