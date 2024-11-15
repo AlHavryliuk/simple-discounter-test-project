@@ -11,87 +11,79 @@ const DiscountCalculator = () => {
     const desired = parseFloat(desiredPrice.replace(/\s/g, ""));
 
     if (isNaN(desired) || desired <= 0 || isNaN(total) || total <= 0) {
-      return null; // Return null for unknown discount
+      return null;
     }
     if (desired > total) {
-      return null; // Indicate invalid case for desired price being higher
+      return null;
     }
 
     const result = ((total - desired) / total) * 100;
-    return result; // Return the discount as a number
+    return result;
   }, [desiredPrice, totalPrice]);
 
   const resultPrice = useMemo(() => {
     const total = parseFloat(totalPrice.replace(/\s/g, ""));
-    if (discountPercentage === null) return ""; // If discount is invalid, return empty
+    if (discountPercentage === null) return "";
     const discountValue = +discountPercentage.toFixed(2) / 100;
-    const discount = total * discountValue; // Calculate and format the final price
+    const discount = total * discountValue;
 
     return total - discount;
   }, [totalPrice, discountPercentage]);
 
-  const formatNumber = (value: string) => {
-    return value.replace(/\s/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  };
-
-  const handleTotalPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTotalPrice(formatNumber(e.target.value));
-  };
-
-  const handleDesiredPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDesiredPrice(formatNumber(e.target.value));
-  };
-
   return (
     <Flex
       sx={{
-        p: "16px",
         flexDirection: "column",
-        gap: "8px",
+        gap: "24px",
         width: ["100%", null, "600px"],
         borderRadius: "8px",
-        bg: "#eaeaea",
-        height: ["100vh", null, "auto"],
+        bg: "white",
       }}
     >
       <Flex sx={{ flexDirection: "column", gap: "8px" }}>
-        <h2>Калькулятор знижок</h2>
+        <Text as="h2" sx={{ my: "0", pb: "16px" }}>
+          Калькулятор знижок
+        </Text>
 
         <CalculatorInput
           title="Початкова ціна курса:"
-          value={totalPrice}
-          setValue={handleTotalPriceChange}
+          setValue={setTotalPrice}
         />
         <CalculatorInput
           title="Бажана ціна курса:"
-          value={desiredPrice}
-          setValue={handleDesiredPriceChange}
+          setValue={setDesiredPrice}
         />
       </Flex>
 
-      <h2>Результати:</h2>
+      <Flex sx={{ height: "1px", width: "100%", bg: "lightgray" }}></Flex>
 
-      <Flex sx={{ flexDirection: "column" }}>
-        <Text>
-          Знижка (з округленням):{" "}
-          <b>
-            {discountPercentage !== null
-              ? discountPercentage.toFixed(2) + "%"
-              : "невідомо"}
-          </b>
+      <Flex sx={{ flexDirection: "column", gap: "8px", fontSize: "18px" }}>
+        <Text as="h2" sx={{ my: "0", pb: "16px" }}>
+          Результати:
         </Text>
-        <Text>
-          Фактична ціна з округленною знижкою:{" "}
-          <b>{resultPrice || "невідомо"}</b>
-        </Text>
-        <Text sx={{ mt: "8px" }}>
-          Знижка (без округлення):{" "}
-          <b>
-            {discountPercentage !== null
-              ? discountPercentage + "%"
-              : "невідомо"}
-          </b>
-        </Text>
+
+        <Flex sx={{ flexDirection: "column" }}>
+          <Text>
+            Знижка (з округленням):{" "}
+            <b>
+              {discountPercentage !== null
+                ? discountPercentage.toFixed(2) + "%"
+                : "невідомо"}
+            </b>
+          </Text>
+          <Text>
+            Фактична ціна з округленною знижкою:{" "}
+            <b>{resultPrice || "невідомо"}</b>
+          </Text>
+          <Text sx={{ mt: "8px" }}>
+            Знижка (без округлення):{" "}
+            <b>
+              {discountPercentage !== null
+                ? discountPercentage + "%"
+                : "невідомо"}
+            </b>
+          </Text>
+        </Flex>
       </Flex>
     </Flex>
   );

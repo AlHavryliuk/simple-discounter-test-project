@@ -1,12 +1,14 @@
 /** @jsxImportSource theme-ui */
 
-import { ThemeUIProvider } from "theme-ui";
+import { Box, ThemeUIProvider } from "theme-ui";
 import { theme } from "./helpers/theme";
 import Calculator from "./pages/Calculator";
 
 export const App = () => (
   <ThemeUIProvider theme={theme}>
-    <Calculator />
+    <Box sx={{ width: "100%", height: "100vh", bg: "#fffcfc" }}>
+      <Calculator />
+    </Box>
   </ThemeUIProvider>
 );
 
