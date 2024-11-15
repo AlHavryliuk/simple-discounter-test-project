@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/simple-discounter-test-project/static/css/main.31564e7c.css",
-    "main.js": "/simple-discounter-test-project/static/js/main.f00cfcc1.js",
+    "main.js": "/simple-discounter-test-project/static/js/main.07a75e8c.js",
     "index.html": "/simple-discounter-test-project/index.html",
     "main.31564e7c.css.map": "/simple-discounter-test-project/static/css/main.31564e7c.css.map",
-    "main.f00cfcc1.js.map": "/simple-discounter-test-project/static/js/main.f00cfcc1.js.map"
+    "main.07a75e8c.js.map": "/simple-discounter-test-project/static/js/main.07a75e8c.js.map"
   },
   "entrypoints": [
     "static/css/main.31564e7c.css",
-    "static/js/main.f00cfcc1.js"
+    "static/js/main.07a75e8c.js"
   ]
 }
